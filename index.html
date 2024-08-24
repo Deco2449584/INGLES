@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Constructor de Oraciones</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Constructor de Oraciones</h1>
+
+      <form id="sentenceForm">
+        <!-- Selector de tiempo verbal -->
+        <div class="form-group">
+          <label for="timeSelector">Selecciona el tiempo verbal:</label>
+          <select id="timeSelector" required>
+            <option value="" disabled selected>Selecciona una opción</option>
+            <option value="simple-past">Pasado Simple</option>
+            <option value="continuous-past">Pasado Continuo</option>
+            <option value="perfect-past">Pasado Perfecto</option>
+            <option value="simple-present">Presente Simple</option>
+            <option value="continuous-present">Presente Continuo</option>
+            <option value="perfect-present">Presente Perfecto</option>
+            <option value="simple-future">Futuro Simple</option>
+            <option value="continuous-future">Futuro Continuo</option>
+            <option value="perfect-future">Futuro Perfecto</option>
+          </select>
+          <small id="timeSelectorError" class="error"></small>
+        </div>
+
+        <!-- Campo para ingresar el sujeto -->
+        <div class="form-group">
+          <label for="subjectInput">Sujeto:</label>
+          <input
+            type="text"
+            id="subjectInput"
+            placeholder="Ingrese el sujeto"
+            required
+          />
+          <small id="subjectInputError" class="error"></small>
+        </div>
+
+        <!-- Campo para ingresar el verbo -->
+        <div class="form-group">
+          <label for="verbInput">Verbo:</label>
+          <input
+            type="text"
+            id="verbInput"
+            placeholder="Ingrese el verbo en su forma base"
+            required
+          />
+          <small id="verbInputError" class="error"></small>
+        </div>
+
+        <!-- Campo para ingresar el complemento -->
+        <div class="form-group">
+          <label for="complementInput">Complemento:</label>
+          <input
+            type="text"
+            id="complementInput"
+            placeholder="Ingrese el complemento"
+            required
+          />
+          <small id="complementInputError" class="error"></small>
+        </div>
+
+        <!-- Botón para validar la oración -->
+        <button type="submit" id="validateButton">Validar Oración</button>
+        <button type="button" id="speakButton">Escuchar Oración</button>
+      </form>
+
+      <!-- Resultado -->
+      <div id="resultContainer" class="result-container hidden">
+        <p id="result"></p>
+      </div>
+    </div>
+
+    <script src="index.js"></script>
+  </body>
+</html>

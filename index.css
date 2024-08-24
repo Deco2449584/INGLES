@@ -1,0 +1,135 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f7fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+input:focus,
+select:focus {
+    border-color: #007bff;
+}
+
+
+
+.error {
+    color: #e74c3c;
+    font-size: 14px;
+    margin-top: 5px;
+    display: none;
+}
+
+.hidden {
+    display: none;
+}
+
+.result-container {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    text-align: center;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+#speakButton {
+    background-color: #4CAF50;
+    /* Color de fondo */
+    border: none;
+    /* Sin borde */
+    color: white;
+    /* Color del texto */
+    padding: 15px 32px;
+    /* Relleno */
+    text-align: center;
+    /* Alineación del texto */
+    text-decoration: none;
+    /* Sin subrayado */
+    display: inline-block;
+    /* Mostrar en línea */
+    font-size: 16px;
+    /* Tamaño de la fuente */
+    margin: 4px 2px;
+    /* Márgenes */
+    cursor: pointer;
+    /* Cambiar el cursor al pasar por encima */
+    border-radius: 12px;
+    /* Bordes redondeados */
+}
+
+#speakButton:hover {
+    background-color: #45a049;
+    /* Color de fondo al pasar el cursor */
+}
+
+#validateButton {
+    background-color: #3b2ad9;
+    /* Color de fondo */
+    border: none;
+    /* Sin borde */
+    color: white;
+    /* Color del texto */
+    padding: 15px 32px;
+    /* Relleno */
+    text-align: center;
+    /* Alineación del texto */
+    text-decoration: none;
+    /* Sin subrayado */
+    display: inline-block;
+    /* Mostrar en línea */
+    font-size: 16px;
+    /* Tamaño de la fuente */
+    margin: 4px 2px;
+    /* Márgenes */
+    cursor: pointer;
+    /* Cambiar el cursor al pasar por encima */
+    border-radius: 12px;
+    /* Bordes redondeados */
+}
+
+#validateButton:hover {
+    background-color: #0f18c7;
+    /* Color de fondo al pasar el cursor */
+}
