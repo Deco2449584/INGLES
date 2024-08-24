@@ -3,21 +3,23 @@ function constructSentence(
   subject,
   verb,
   complement,
-  isQuestion
+  isQuestion,
+  isNegation
 ) {
+  const negation = isNegation ? "not " : "";
   switch (timeSelector) {
     case "simple-past":
       return isQuestion
-        ? `<span class="highlight-question">Did</span> ${subject} ${verb} ${complement}?`
-        : `${subject} ${verb}<span class="highlight-simple-past">ed</span> ${complement}`;
+        ? `<span class="highlight">Did</span> ${subject} ${negation}${verb} ${complement}?`
+        : `${subject} ${negation}${verb}<span class="highlight">ed</span> ${complement}`;
     case "continuous-past":
       return isQuestion
-        ? `<span class="highlight-question">Was/Were</span> ${subject} ${verb}<span class="highlight-continuous-past">ing</span> ${complement}?`
-        : `${subject} <span class="highlight-continuous-past">was/were</span> ${verb}<span class="highlight-continuous-past">ing</span> ${complement}`;
+        ? `<span class="highlight">Was/Were</span> ${subject} ${negation}${verb}<span class="highlight">ing</span> ${complement}?`
+        : `${subject} <span class="highlight">was/were</span> ${negation}${verb}<span class="highlight">ing</span> ${complement}`;
     case "perfect-past":
       return isQuestion
-        ? `<span class="highlight-question">Had</span> ${subject} ${verb}<span class="highlight-perfect-past">ed</span> ${complement}?`
-        : `${subject} <span class="highlight-perfect-past">had</span> ${verb}<span class="highlight-perfect-past">ed</span> ${complement}`;
+        ? `<span class="highlight">Had</span> ${subject} ${negation}${verb}<span class="highlight">ed</span> ${complement}?`
+        : `${subject} <span class="highlight">had</span> ${negation}${verb}<span class="highlight">ed</span> ${complement}`;
     case "simple-present":
       if (
         subject.toLowerCase() === "he" ||
@@ -25,33 +27,33 @@ function constructSentence(
         subject.toLowerCase() === "it"
       ) {
         return isQuestion
-          ? `<span class="highlight-question">Does</span> ${subject} ${verb} ${complement}?`
-          : `${subject} ${verb}<span class="highlight-simple-present">s</span> ${complement}`;
+          ? `<span class="highlight">Does</span> ${subject} ${negation}${verb} ${complement}?`
+          : `${subject} ${negation}${verb}<span class="highlight">s</span> ${complement}`;
       } else {
         return isQuestion
-          ? `<span class="highlight-question">Do</span> ${subject} ${verb} ${complement}?`
-          : `${subject} ${verb}<span class="highlight-simple-present">s</span> ${complement}`;
+          ? `<span class="highlight">Do</span> ${subject} ${negation}${verb} ${complement}?`
+          : `${subject} ${negation}${verb}<span class="highlight">s</span> ${complement}`;
       }
     case "continuous-present":
       return isQuestion
-        ? `<span class="highlight-question">Is/Are</span> ${subject} ${verb}<span class="highlight-continuous-present">ing</span> ${complement}?`
-        : `${subject} <span class="highlight-continuous-present">is/are</span> ${verb}<span class="highlight-continuous-present">ing</span> ${complement}`;
+        ? `<span class="highlight">Is/Are</span> ${subject} ${negation}${verb}<span class="highlight">ing</span> ${complement}?`
+        : `${subject} <span class="highlight">is/are</span> ${negation}${verb}<span class="highlight">ing</span> ${complement}`;
     case "perfect-present":
       return isQuestion
-        ? `<span class="highlight-question">Has/Have</span> ${subject} ${verb}<span class="highlight-perfect-present">ed</span> ${complement}?`
-        : `${subject} <span class="highlight-perfect-present">has/have</span> ${verb}<span class="highlight-perfect-present">ed</span> ${complement}`;
+        ? `<span class="highlight">Has/Have</span> ${subject} ${negation}${verb}<span class="highlight">ed</span> ${complement}?`
+        : `${subject} <span class="highlight">has/have</span> ${negation}${verb}<span class="highlight">ed</span> ${complement}`;
     case "simple-future":
       return isQuestion
-        ? `<span class="highlight-question">Will</span> ${subject} ${verb} ${complement}?`
-        : `${subject} <span class="highlight-simple-future">will</span> ${verb} ${complement}`;
+        ? `<span class="highlight">Will</span> ${subject} ${negation}${verb} ${complement}?`
+        : `${subject} <span class="highlight">will</span> ${negation}${verb} ${complement}`;
     case "continuous-future":
       return isQuestion
-        ? `<span class="highlight-question">Will</span> ${subject} be ${verb}<span class="highlight-continuous-future">ing</span> ${complement}?`
-        : `${subject} <span class="highlight-continuous-future">will be</span> ${verb}<span class="highlight-continuous-future">ing</span> ${complement}`;
+        ? `<span class="highlight">Will</span> ${subject} ${negation}be ${verb}<span class="highlight">ing</span> ${complement}?`
+        : `${subject} <span class="highlight">will be</span> ${negation}${verb}<span class="highlight">ing</span> ${complement}`;
     case "perfect-future":
       return isQuestion
-        ? `<span class="highlight-question">Will</span> ${subject} have ${verb}<span class="highlight-perfect-future">ed</span> ${complement}?`
-        : `${subject} <span class="highlight-perfect-future">will have</span> ${verb}<span class="highlight-perfect-future">ed</span> ${complement}`;
+        ? `<span class="highlight">Will</span> ${subject} ${negation}have ${verb}<span class="highlight">ed</span> ${complement}?`
+        : `${subject} <span class="highlight">will have</span> ${negation}${verb}<span class="highlight">ed</span> ${complement}`;
     default:
       return "Tiempo verbal no soportado.";
   }
@@ -67,6 +69,7 @@ document
     const verb = document.getElementById("verbInput");
     const complement = document.getElementById("complementInput");
     const enableQuestion = document.getElementById("enableQuestion").checked;
+    const enableNegation = document.getElementById("enableNegation").checked;
     const resultContainer = document.getElementById("resultContainer");
     const result = document.getElementById("result");
 
@@ -79,7 +82,8 @@ document
         subject.value,
         verb.value,
         complement.value,
-        enableQuestion
+        enableQuestion,
+        enableNegation
       );
       result.innerHTML = `Oración: ${sentence}`;
       resultContainer.classList.remove("hidden");
