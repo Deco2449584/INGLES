@@ -133,3 +133,48 @@ select:focus {
     background-color: #0f18c7;
     /* Color de fondo al pasar el cursor */
 }
+
+.highlight-simple-past {
+    color: #ff5733;
+    /* Rojo */
+}
+
+.highlight-continuous-past {
+    color: #23a33a;
+    /* Verde */
+}
+
+.highlight-perfect-past {
+    color: #3357ff;
+    /* Azul */
+}
+
+.highlight-simple-present {
+    color: #ff33a1;
+    /* Rosa */
+}
+
+.highlight-continuous-present {
+    color: #a133ff;
+    /* Púrpura */
+}
+
+.highlight-perfect-present {
+    color: #0d8f52;
+    /* Verde claro */
+}
+
+.highlight-simple-future {
+    color: #ffaa33;
+    /* Naranja */
+}
+
+.highlight-continuous-future {
+    color: #769b05;
+    /* Amarillo verdoso */
+}
+
+.highlight-perfect-future {
+    color: #33a1ff;
+    /* Azul claro */
+}

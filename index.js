@@ -1,3 +1,28 @@
+function constructSentence(timeSelector, subject, verb, complement) {
+  switch (timeSelector) {
+    case "simple-past":
+      return `${subject} ${verb}<span class="highlight-simple-past">ed</span> ${complement}`;
+    case "continuous-past":
+      return `${subject} <span class="highlight-continuous-past">was/were</span> ${verb}<span class="highlight-continuous-past">ing</span> ${complement}`;
+    case "perfect-past":
+      return `${subject} <span class="highlight-perfect-past">had</span> ${verb}<span class="highlight-perfect-past">ed</span> ${complement}`;
+    case "simple-present":
+      return `${subject} ${verb}<span class="highlight-simple-present">s</span> ${complement}`;
+    case "continuous-present":
+      return `${subject} <span class="highlight-continuous-present">is/are</span> ${verb}<span class="highlight-continuous-present">ing</span> ${complement}`;
+    case "perfect-present":
+      return `${subject} <span class="highlight-perfect-present">has/have</span> ${verb}<span class="highlight-perfect-present">ed</span> ${complement}`;
+    case "simple-future":
+      return `${subject} <span class="highlight-simple-future">will</span> ${verb} ${complement}`;
+    case "continuous-future":
+      return `${subject} <span class="highlight-continuous-future">will be</span> ${verb}<span class="highlight-continuous-future">ing</span> ${complement}`;
+    case "perfect-future":
+      return `${subject} <span class="highlight-perfect-future">will have</span> ${verb}<span class="highlight-perfect-future">ed</span> ${complement}`;
+    default:
+      return "Tiempo verbal no soportado.";
+  }
+}
+
 document
   .getElementById("sentenceForm")
   .addEventListener("submit", function (event) {
@@ -20,7 +45,7 @@ document
         verb.value,
         complement.value
       );
-      result.innerText = `Oración: ${sentence}`;
+      result.innerHTML = `Oración: ${sentence}`;
       resultContainer.classList.remove("hidden");
       resultContainer.classList.add("success");
     }
@@ -64,30 +89,6 @@ function clearErrors() {
     .forEach((el) => (el.style.display = "none"));
 }
 
-function constructSentence(timeSelector, subject, verb, complement) {
-  switch (timeSelector) {
-    case "simple-past":
-      return `${subject} ${verb}ed ${complement}`;
-    case "continuous-past":
-      return `${subject} was/were ${verb}ing ${complement}`;
-    case "perfect-past":
-      return `${subject} had ${verb}ed ${complement}`;
-    case "simple-present":
-      return `${subject} ${verb}s ${complement}`;
-    case "continuous-present":
-      return `${subject} is/are ${verb}ing ${complement}`;
-    case "perfect-present":
-      return `${subject} has/have ${verb}ed ${complement}`;
-    case "simple-future":
-      return `${subject} will ${verb} ${complement}`;
-    case "continuous-future":
-      return `${subject} will be ${verb}ing ${complement}`;
-    case "perfect-future":
-      return `${subject} will have ${verb}ed ${complement}`;
-    default:
-      return "Tiempo verbal no soportado.";
-  }
-}
 document.getElementById("speakButton").addEventListener("click", function () {
   const sentence = document
     .getElementById("result")
