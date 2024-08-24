@@ -1,23 +1,57 @@
-function constructSentence(timeSelector, subject, verb, complement) {
+function constructSentence(
+  timeSelector,
+  subject,
+  verb,
+  complement,
+  isQuestion
+) {
   switch (timeSelector) {
     case "simple-past":
-      return `${subject} ${verb}<span class="highlight-simple-past">ed</span> ${complement}`;
+      return isQuestion
+        ? `<span class="highlight-question">Did</span> ${subject} ${verb} ${complement}?`
+        : `${subject} ${verb}<span class="highlight-simple-past">ed</span> ${complement}`;
     case "continuous-past":
-      return `${subject} <span class="highlight-continuous-past">was/were</span> ${verb}<span class="highlight-continuous-past">ing</span> ${complement}`;
+      return isQuestion
+        ? `<span class="highlight-question">Was/Were</span> ${subject} ${verb}<span class="highlight-continuous-past">ing</span> ${complement}?`
+        : `${subject} <span class="highlight-continuous-past">was/were</span> ${verb}<span class="highlight-continuous-past">ing</span> ${complement}`;
     case "perfect-past":
-      return `${subject} <span class="highlight-perfect-past">had</span> ${verb}<span class="highlight-perfect-past">ed</span> ${complement}`;
+      return isQuestion
+        ? `<span class="highlight-question">Had</span> ${subject} ${verb}<span class="highlight-perfect-past">ed</span> ${complement}?`
+        : `${subject} <span class="highlight-perfect-past">had</span> ${verb}<span class="highlight-perfect-past">ed</span> ${complement}`;
     case "simple-present":
-      return `${subject} ${verb}<span class="highlight-simple-present">s</span> ${complement}`;
+      if (
+        subject.toLowerCase() === "he" ||
+        subject.toLowerCase() === "she" ||
+        subject.toLowerCase() === "it"
+      ) {
+        return isQuestion
+          ? `<span class="highlight-question">Does</span> ${subject} ${verb} ${complement}?`
+          : `${subject} ${verb}<span class="highlight-simple-present">s</span> ${complement}`;
+      } else {
+        return isQuestion
+          ? `<span class="highlight-question">Do</span> ${subject} ${verb} ${complement}?`
+          : `${subject} ${verb}<span class="highlight-simple-present">s</span> ${complement}`;
+      }
     case "continuous-present":
-      return `${subject} <span class="highlight-continuous-present">is/are</span> ${verb}<span class="highlight-continuous-present">ing</span> ${complement}`;
+      return isQuestion
+        ? `<span class="highlight-question">Is/Are</span> ${subject} ${verb}<span class="highlight-continuous-present">ing</span> ${complement}?`
+        : `${subject} <span class="highlight-continuous-present">is/are</span> ${verb}<span class="highlight-continuous-present">ing</span> ${complement}`;
     case "perfect-present":
-      return `${subject} <span class="highlight-perfect-present">has/have</span> ${verb}<span class="highlight-perfect-present">ed</span> ${complement}`;
+      return isQuestion
+        ? `<span class="highlight-question">Has/Have</span> ${subject} ${verb}<span class="highlight-perfect-present">ed</span> ${complement}?`
+        : `${subject} <span class="highlight-perfect-present">has/have</span> ${verb}<span class="highlight-perfect-present">ed</span> ${complement}`;
     case "simple-future":
-      return `${subject} <span class="highlight-simple-future">will</span> ${verb} ${complement}`;
+      return isQuestion
+        ? `<span class="highlight-question">Will</span> ${subject} ${verb} ${complement}?`
+        : `${subject} <span class="highlight-simple-future">will</span> ${verb} ${complement}`;
     case "continuous-future":
-      return `${subject} <span class="highlight-continuous-future">will be</span> ${verb}<span class="highlight-continuous-future">ing</span> ${complement}`;
+      return isQuestion
+        ? `<span class="highlight-question">Will</span> ${subject} be ${verb}<span class="highlight-continuous-future">ing</span> ${complement}?`
+        : `${subject} <span class="highlight-continuous-future">will be</span> ${verb}<span class="highlight-continuous-future">ing</span> ${complement}`;
     case "perfect-future":
-      return `${subject} <span class="highlight-perfect-future">will have</span> ${verb}<span class="highlight-perfect-future">ed</span> ${complement}`;
+      return isQuestion
+        ? `<span class="highlight-question">Will</span> ${subject} have ${verb}<span class="highlight-perfect-future">ed</span> ${complement}?`
+        : `${subject} <span class="highlight-perfect-future">will have</span> ${verb}<span class="highlight-perfect-future">ed</span> ${complement}`;
     default:
       return "Tiempo verbal no soportado.";
   }
@@ -32,6 +66,7 @@ document
     const subject = document.getElementById("subjectInput");
     const verb = document.getElementById("verbInput");
     const complement = document.getElementById("complementInput");
+    const enableQuestion = document.getElementById("enableQuestion").checked;
     const resultContainer = document.getElementById("resultContainer");
     const result = document.getElementById("result");
 
@@ -43,7 +78,8 @@ document
         timeSelector.value,
         subject.value,
         verb.value,
-        complement.value
+        complement.value,
+        enableQuestion
       );
       result.innerHTML = `Oración: ${sentence}`;
       resultContainer.classList.remove("hidden");

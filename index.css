@@ -178,3 +178,102 @@ select:focus {
     color: #33a1ff;
     /* Azul claro */
 }
+
+/* Estilos para el checkbox y su etiqueta */
+label[for="enableQuestion"] {
+    font-size: 16px;
+    color: #333;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    /* Espacio entre el texto y el checkbox */
+}
+
+/* Estilos para el checkbox personalizado */
+#enableQuestion {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #333;
+    border-radius: 4px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+#enableQuestion:checked::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 14px;
+    height: 14px;
+    background-color: #333;
+    border-radius: 2px;
+    transition: background-color 0.3s;
+}
+
+#enableQuestion:hover {
+    border-color: #555;
+}
+
+#enableQuestion:checked:hover::before {
+    background-color: #555;
+}
+
+/* Estilos para las partes de las preguntas */
+.highlight-question {
+    color: #ff5733;
+    /* Rojo */
+}
+
+.highlight-simple-past {
+    color: #ff5733;
+    /* Rojo */
+}
+
+.highlight-continuous-past {
+    color: #1cb137;
+    /* Verde */
+}
+
+.highlight-perfect-past {
+    color: #3357ff;
+    /* Azul */
+}
+
+.highlight-simple-present {
+    color: #ff33a1;
+    /* Rosa */
+}
+
+.highlight-continuous-present {
+    color: #a133ff;
+    /* Púrpura */
+}
+
+.highlight-perfect-present {
+    color: #2ca46c;
+    /* Verde claro */
+}
+
+.highlight-simple-future {
+    color: #ffaa33;
+    /* Naranja */
+}
+
+.highlight-continuous-future {
+    color: #a1ff33;
+    /* Amarillo verdoso */
+}
+
+.highlight-perfect-future {
+    color: #33a1ff;
+    /* Azul claro */
+}
+
+.highlight-question {
+    color: #f76300;
+    /* Rojo */
+}
