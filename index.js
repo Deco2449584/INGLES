@@ -401,7 +401,6 @@ const irregularVerbs = {
   win: { past: "won", participle: "won" },
   write: { past: "wrote", participle: "written" },
 };
-
 function constructSentence(
   timeSelector,
   subject,
@@ -415,6 +414,27 @@ function constructSentence(
   const pastVerb = irregularVerb ? irregularVerb.past : `${verb}ed`;
   const participleVerb = irregularVerb ? irregularVerb.participle : `${verb}ed`;
 
+  // Funciones auxiliares para is/are y has/have
+  function getIsOrAre(subject) {
+    return ["he", "she", "it"].includes(subject.toLowerCase()) ? "is" : "are";
+  }
+
+  function getHasOrHave(subject) {
+    return ["he", "she", "it"].includes(subject.toLowerCase()) ? "has" : "have";
+  }
+  function getWasOrWere(subject) {
+    return ["he", "she", "it"].includes(subject.toLowerCase()) ? "was" : "were";
+  }
+
+  function getThirdPersonSingularVerb(verb) {
+    if (verb.toLowerCase() === "go")
+      return `go<span class="highlight">es</span>`;
+    if (verb.endsWith("y") && !/[aeiou]y$/.test(verb)) {
+      return `${verb.slice(0, -1)}<span class="highlight">ies</span>`;
+    }
+    return `${verb}<span class="highlight">s</span>`;
+  }
+
   switch (timeSelector) {
     case "simple-past":
       return isQuestion
@@ -422,21 +442,23 @@ function constructSentence(
         : `${subject} ${negation}${pastVerb} ${complement}`;
     case "continuous-past":
       return isQuestion
-        ? `<span class="highlight">Was/Were</span> ${subject} ${negation}${verb}<span class="highlight">ing</span> ${complement}?`
-        : `${subject} <span class="highlight">was/were</span> ${negation}${verb}<span class="highlight">ing</span> ${complement}`;
+        ? `<span class="highlight">${getWasOrWere(
+            subject
+          )}</span> ${subject} ${negation}${verb}<span class="highlight">ing</span> ${complement}?`
+        : `${subject} <span class="highlight">${getIsOrAre(
+            subject
+          )}</span> ${negation}${verb}<span class="highlight">ing</span> ${complement}`;
     case "perfect-past":
       return isQuestion
         ? `<span class="highlight">Had</span> ${subject} ${negation}${participleVerb} ${complement}?`
         : `${subject} <span class="highlight">had</span> ${negation}${participleVerb} ${complement}`;
     case "simple-present":
-      if (
-        subject.toLowerCase() === "he" ||
-        subject.toLowerCase() === "she" ||
-        subject.toLowerCase() === "it"
-      ) {
+      if (["he", "she", "it"].includes(subject.toLowerCase())) {
         return isQuestion
           ? `<span class="highlight">Does</span> ${subject} ${negation}${verb} ${complement}?`
-          : `${subject} ${negation}${verb}<span class="highlight">s</span> ${complement}`;
+          : `${subject} ${negation}${getThirdPersonSingularVerb(
+              verb
+            )} ${complement}`;
       } else {
         return isQuestion
           ? `<span class="highlight">Do</span> ${subject} ${negation}${verb} ${complement}?`
@@ -445,11 +467,15 @@ function constructSentence(
     case "continuous-present":
       return isQuestion
         ? `<span class="highlight">Is/Are</span> ${subject} ${negation}${verb}<span class="highlight">ing</span> ${complement}?`
-        : `${subject} <span class="highlight">is/are</span> ${negation}${verb}<span class="highlight">ing</span> ${complement}`;
+        : `${subject} <span class="highlight">${getIsOrAre(
+            subject
+          )}</span> ${negation}${verb}<span class="highlight">ing</span> ${complement}`;
     case "perfect-present":
       return isQuestion
         ? `<span class="highlight">Has/Have</span> ${subject} ${negation}${participleVerb} ${complement}?`
-        : `${subject} <span class="highlight">has/have</span> ${negation}${participleVerb} ${complement}`;
+        : `${subject} <span class="highlight">${getHasOrHave(
+            subject
+          )}</span> ${negation}${participleVerb} ${complement}`;
     case "simple-future":
       return isQuestion
         ? `<span class="highlight">Will</span> ${subject} ${negation}${verb} ${complement}?`
